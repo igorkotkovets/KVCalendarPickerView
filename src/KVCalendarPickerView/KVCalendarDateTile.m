@@ -65,7 +65,7 @@
 {
     self.backgroundColor = [UIColor clearColor];
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.layer.borderWidth = 1.f;
+    self.layer.borderWidth = 0.5f;
     
     self.dateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.dateButton.frame = self.bounds;
