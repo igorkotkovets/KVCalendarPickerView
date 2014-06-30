@@ -25,17 +25,53 @@
                                     <constraint firstAttribute="width" constant="294" id="jAR-wz-0ZK"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="datasource" destination="BYZ-38-t0r" id="6WT-Go-bwX"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="pZM-be-9Qg"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDN-IQ-yOU">
+                                <rect key="frame" x="512" y="70" width="206" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Begining of a week is Monday">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setBeginingOfAWeekMonday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHd-Ro-U4k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeV-aS-BWj">
+                                <rect key="frame" x="516" y="150" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Begining of a week is Sunday">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setBeginingOfAWeekSunday:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Seq-Me-XgT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVM-Mu-Gf3">
+                                <rect key="frame" x="512" y="260" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Today">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="today:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FdS-JA-lo7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eeV-aS-BWj" firstAttribute="top" secondItem="uDN-IQ-yOU" secondAttribute="bottom" constant="50" id="15Z-KB-mcL"/>
+                            <constraint firstAttribute="trailing" secondItem="eeV-aS-BWj" secondAttribute="trailing" constant="50" id="5zb-23-nXf"/>
+                            <constraint firstItem="uDN-IQ-yOU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Ki2-ZF-dZA"/>
                             <constraint firstItem="Cj7-Ye-FLH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="Xva-dR-niy"/>
                             <constraint firstItem="Cj7-Ye-FLH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="ef4-L3-035"/>
+                            <constraint firstAttribute="trailing" secondItem="uDN-IQ-yOU" secondAttribute="trailing" constant="50" id="yIU-Nm-bXh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarPickerView" destination="Cj7-Ye-FLH" id="O9e-05-zjs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

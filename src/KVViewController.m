@@ -11,7 +11,7 @@
 #import "KVCalendarPickerView.h"
 
 @interface KVViewController ()
-<KVCalendarPickerViewDatasource, KVCalendarPickerViewDelegate>
+<KVCalendarPickerViewDelegate>
 
 @end
 
@@ -34,14 +34,29 @@
     
 }
 
-- (void)monthCalendarPicker:(KVCalendarPickerView *)picker didChangeSelectedMonth:(NSDate *)date
+-(void)monthCalendarPicker:(KVCalendarPickerView *)picker didSelectDate:(NSDate *)date
 {
     
 }
 
--(void)monthCalendarPicker:(KVCalendarPickerView *)picker didSelectDate:(NSDate *)date
+- (IBAction)setBeginingOfAWeekMonday:(id)sender
 {
-    
+    [self.calendarPickerView setFirstWeekday:MonthCalendarWeekBeginsDayFromMonday];
+}
+
+- (IBAction)setBeginingOfAWeekSunday:(id)sender
+{
+    [self.calendarPickerView setFirstWeekday:MonthCalendarWeekBeginsDayFromSunday];
+}
+
+- (IBAction)today:(id)sender
+{
+    [self.calendarPickerView showDate:[NSDate date]];
+}
+
+- (IBAction)date:(id)sender
+{
+
 }
 
 @end

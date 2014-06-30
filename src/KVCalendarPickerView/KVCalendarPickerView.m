@@ -64,7 +64,7 @@ static const float DayLabelsHeight = 30.f;
     [self.monthScrollView setFrame:rc];
     self.monthScrollView.calendarScrollDatasource = self;
     self.monthScrollView.calendarScrollDelegate = self;
-    self.monthScrollView.clipsToBounds = NO;
+    self.monthScrollView.clipsToBounds = YES;
     [self addSubview:self.monthScrollView];
     
     self.monthScrollView.layer.borderColor =
@@ -137,28 +137,29 @@ static const float DayLabelsHeight = 30.f;
 #pragma mark -
 #pragma mark Public
 
-//- (void)setFirstWeekday:(NSUInteger)firstWeekday
-//{
-    //    if (firstWeekday == [self.dataProvider firstWeekDay]) return;
-    //
-    //    firstWeekday = MAX(MonthCalendarWeekBeginsDayFromSunday, firstWeekday);
-    //    firstWeekday = MIN(MonthCalendarWeekBeginsDayFromMonday, firstWeekday);
-    //
-    //    [self reloadDayLabelsWithFirstWeekday:firstWeekday];
-    //
-    //    [self.dataProvider setFirstWeekDay:firstWeekday];
-    //
-    //    IKMonthCalendarTileView *firstTile = [self.monthScrollView.loadedViews firstObject];
-    //    IKMonthCalendarTileView *lastTile = [self.monthScrollView.loadedViews lastObject];;
-    //
-    //    CGPoint firstTilePosition = [self.monthScrollView positionInScrollViewOfTile:firstTile];
-    //
-    //    CGPoint offset = [self.monthScrollView contentOffset];
-    //    lastTile.row -= self.numberOfWeeksInCalendar+1;
-    //    offset.y += (self.numberOfWeeksInCalendar+1)*self.tileSize.height+firstTilePosition.y;
-    //
-    //    [self.monthScrollView setContentOffset:offset animated:YES];
-//}
+- (void)setFirstWeekday:(MonthCalendarWeekBeginsFromDay)firstWeekday
+{
+    firstWeekday = MAX(MonthCalendarWeekBeginsDayFromSunday, firstWeekday);
+    firstWeekday = MIN(MonthCalendarWeekBeginsDayFromMonday, firstWeekday);
+    
+    [self reloadDayLabelsWithFirstWeekday:firstWeekday];
+    
+    [self.monthScrollView stopScrolling];
+    [self.dateProvider setFirstWeekDay:firstWeekday];
+    [self.monthScrollView reloadData];
+}
+
+- (MonthCalendarWeekBeginsFromDay)firstWeekday
+{
+    return [self.dateProvider firstWeekDay];
+}
+
+- (void)showDate:(NSDate *)date
+{
+    [self.monthScrollView stopScrolling];
+    [self.dateProvider setBaseDate:date];
+    [self.monthScrollView reloadData];
+}
 
 - (void)presentDatesBeginsFromDate:(NSDate *)aDate
 {
@@ -208,7 +209,6 @@ static const float DayLabelsHeight = 30.f;
                           withDate:(NSDate *)date
                             column:(NSInteger)column
 {
-    tile.backgroundColor = [UIColor lightGrayColor];
     tile.date = date;
     tile.column = column;
 }
@@ -248,10 +248,7 @@ static const CGFloat tileHeight = 46;
 
 - (void)calendarScrollViewDidFinishScrollAnimating:(KVCalendarScrollView *)view
 {
-}
-
-- (void)configureMonthLabelTileView:(KVCalendarTile *)tileView
-{
+    NSLog(@"calendarScrollViewDidFinishScrollAnimating");
 }
 
 #pragma mark -

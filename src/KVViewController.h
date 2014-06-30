@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class KVCalendarPickerView;
 @interface KVViewController : UIViewController
+@property (nonatomic, weak) IBOutlet KVCalendarPickerView *calendarPickerView;
 
+- (IBAction)setBeginingOfAWeekMonday:(id)sender;
+- (IBAction)setBeginingOfAWeekSunday:(id)sender;
+
+- (IBAction)today:(id)sender;
+- (IBAction)date:(id)sender;
 @end
