@@ -64,7 +64,7 @@ static const float DayLabelsHeight = 30.f;
     [self.monthScrollView setFrame:rc];
     self.monthScrollView.calendarScrollDatasource = self;
     self.monthScrollView.calendarScrollDelegate = self;
-    self.monthScrollView.clipsToBounds = YES;
+    self.monthScrollView.clipsToBounds = NO;
     [self addSubview:self.monthScrollView];
     
     self.monthScrollView.layer.borderColor =
@@ -208,6 +208,7 @@ static const float DayLabelsHeight = 30.f;
                           withDate:(NSDate *)date
                             column:(NSInteger)column
 {
+    tile.backgroundColor = [UIColor lightGrayColor];
     tile.date = date;
     tile.column = column;
 }

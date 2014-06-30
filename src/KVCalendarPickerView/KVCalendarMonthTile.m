@@ -107,8 +107,7 @@
                                byAddingDays:-1];
     NSInteger dayIndex = [controller dayColumnIndexOfDate:previousDate];
     
-    if (dayIndex == days_in_week-1
-        && self.column != dayIndex)
+    if (dayIndex == days_in_week-1)
     {
         *date = previousDate;
         return [KVDateTileProvider class];

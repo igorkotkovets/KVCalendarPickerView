@@ -93,8 +93,14 @@
 {
     NSDate *nextDate = [controller date:self.date
                            byAddingDays:1];
+    BOOL isDifferentMonth = [controller isDifferentMonthsDate:nextDate andDate:self.date];
 
-    if ([controller isDifferentMonthsDate:nextDate andDate:self.date])
+    if (isDifferentMonth && self.column == days_in_week-1)
+    {
+        *date = nextDate;
+        return [KVMonthTileProvider class];
+    }
+    else if (isDifferentMonth && self.column != days_in_week-1)
     {
         *date = self.date;
         return [KVEmptyTileProvider class];

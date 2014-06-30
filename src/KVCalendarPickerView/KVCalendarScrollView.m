@@ -155,9 +155,11 @@
                             column:0];
     }
     
-    [self addTilesToTopLeftPoint:tl fromRightX:br.x];
-    [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
-    [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
+    @synchronized(self) {
+        [self addTilesToTopLeftPoint:tl fromRightX:br.x];
+        [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
+        [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
+    }
 }
 
 - (void)addTilesToBottomRightPoint:(CGPoint)br fromLeftX:(CGFloat)x
@@ -224,22 +226,23 @@
 
 -(void)removeTilesOutOfTopLeftPoint:(CGPoint)tl toBottomRightPoint:(CGPoint)br
 {
-    KVCalendarTile *lastView = [self.loadedViews lastObject];
-    //    while ([lastView frame].origin.y >= br.y+_tileSize.height)
-    while ([lastView frame].origin.y >= br.y+([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
-    {
-        [lastView removeFromSuperview];
-        [self.loadedViews removeLastObject];
-        lastView = [self.loadedViews lastObject];
-    }
-    
     KVCalendarTile *firstView = [self.loadedViews firstObject];
-    //    while (firstView && CGRectGetMaxY([firstView frame]) <= tl.y-_tileSize.height)
-    while (firstView && CGRectGetMaxY([firstView frame]) <= tl.y-([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
+    
+//    while (firstView && CGRectGetMaxY([firstView frame]) <= tl.y-([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
+    while (firstView && CGRectGetMaxY(firstView.frame)<tl.y)
     {
         [firstView removeFromSuperview];
         [self.loadedViews removeObject:firstView];
         firstView = [self.loadedViews firstObject];
+    }
+    
+    KVCalendarTile *lastView = [self.loadedViews lastObject];
+//    while ([lastView frame].origin.y >= br.y+([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
+    while (lastView && CGRectGetMinY([lastView frame])>br.y)
+    {
+        [lastView removeFromSuperview];
+        [self.loadedViews removeObject:lastView];
+        lastView = [self.loadedViews lastObject];
     }
 }
 

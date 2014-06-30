@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cj7-Ye-FLH" customClass="KVCalendarPickerView">
-                                <rect key="frame" x="13" y="131" width="742" height="763"/>
+                                <rect key="frame" x="50" y="50" width="294" height="260"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="763" id="Uc5-eO-04O"/>
-                                    <constraint firstAttribute="width" constant="742" id="jAR-wz-0ZK"/>
+                                    <constraint firstAttribute="height" constant="260" id="Uc5-eO-04O"/>
+                                    <constraint firstAttribute="width" constant="294" id="jAR-wz-0ZK"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="datasource" destination="BYZ-38-t0r" id="6WT-Go-bwX"/>
@@ -32,8 +32,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Cj7-Ye-FLH" secondAttribute="centerY" id="67s-AW-6Jd"/>
-                            <constraint firstAttribute="centerX" secondItem="Cj7-Ye-FLH" secondAttribute="centerX" id="IIc-Dr-skw"/>
+                            <constraint firstItem="Cj7-Ye-FLH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="Xva-dR-niy"/>
+                            <constraint firstItem="Cj7-Ye-FLH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="ef4-L3-035"/>
                         </constraints>
                     </view>
                 </viewController>
