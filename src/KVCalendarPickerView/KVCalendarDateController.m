@@ -11,9 +11,7 @@
 #import "NSDate+KVCalendarUtils.h"
 
 @interface KVCalendarDateController ()
-@property(nonatomic, strong) NSDate *baseDate;
 @property (nonatomic, strong) NSCalendar *calendar;
-@property (nonatomic, assign) NSUInteger firstWeekDay;
 @property (nonatomic, strong) NSDateFormatter *monthStringDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *dayStringDateFormatter;
 @end
@@ -40,11 +38,6 @@
         
         self.firstWeekDay = day;
         
-        self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [self.calendar setFirstWeekday:self.firstWeekDay];
-        self.calendar.timeZone = [NSTimeZone systemTimeZone];
-        self.calendar.locale = [NSLocale currentLocale];
-        
         self.monthStringDateFormatter = [[NSDateFormatter alloc] init];
         [self.monthStringDateFormatter setDateFormat:@"LLLL yyyy"];
         
@@ -53,6 +46,16 @@
     }
     
     return self;
+}
+
+- (void)setFirstWeekDay:(MonthCalendarWeekBeginsFromDay)firstWeekDay
+{
+    _firstWeekDay = firstWeekDay;
+    
+    self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [self.calendar setFirstWeekday:self.firstWeekDay];
+    self.calendar.timeZone = [NSTimeZone systemTimeZone];
+    self.calendar.locale = [NSLocale currentLocale];
 }
 
 -(NSDate *)beginOfWeekBaseDate
@@ -88,11 +91,11 @@
     [self.calendar components:NSWeekdayCalendarUnit
                      fromDate:date];
     NSInteger dayIndex = [weekdayComponents weekday];
-    if (dayIndex == 1) {
-        dayIndex = 8;
-    }
-    
     dayIndex = dayIndex - self.firstWeekDay;
+    
+    if (dayIndex < 0) {
+        dayIndex += days_in_week;
+    }
     
     return dayIndex;
 }

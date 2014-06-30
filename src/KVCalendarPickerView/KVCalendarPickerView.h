@@ -12,10 +12,6 @@
 
 @class KVCalendarTile;
 @class KVCalendarPickerView;
-@protocol KVCalendarPickerViewDatasource <NSObject>
-- (void)weekBeginsFromDayInMonthCalendarPicker:(KVCalendarPickerView *)picker
-                               willDisplayTile:(KVCalendarTile *)tile;
-@end
 
 
 @protocol KVCalendarPickerViewDelegate <NSObject>
@@ -26,6 +22,8 @@
 
 @interface KVCalendarPickerView : UIView
 @property (nonatomic, weak) IBOutlet id<KVCalendarPickerViewDelegate> delegate;
-@property (nonatomic, weak) IBOutlet id<KVCalendarPickerViewDatasource> datasource;
-@property (nonatomic, assign) MonthCalendarWeekBeginsFromDay firstWeekday;
+
+- (void)setFirstWeekday:(MonthCalendarWeekBeginsFromDay)firstWeekday;
+- (MonthCalendarWeekBeginsFromDay)firstWeekday;
+- (void)showDate:(NSDate *)date;
 @end

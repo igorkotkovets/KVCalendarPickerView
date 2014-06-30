@@ -12,8 +12,12 @@
 
 
 @interface KVCalendarDateController : NSObject
+@property (nonatomic, assign) MonthCalendarWeekBeginsFromDay firstWeekDay;
+@property (nonatomic, strong) NSDate *baseDate;
+
 -(id)initWithBaseDate:(NSDate *)date;
--(id)initWithBaseDate:(NSDate *)date beginOfWeek:(MonthCalendarWeekBeginsFromDay)day;
+-(id)initWithBaseDate:(NSDate *)date
+          beginOfWeek:(MonthCalendarWeekBeginsFromDay)day;
 
 -(NSDate *)beginOfWeekBaseDate;
 -(NSString *)monthStringFromDate:(NSDate *)date;

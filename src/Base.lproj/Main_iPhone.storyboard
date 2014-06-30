@@ -17,25 +17,63 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZj-re-fK6" customClass="KVCalendarPickerView">
-                                <rect key="frame" x="3" y="113" width="315" height="343"/>
+                                <rect key="frame" x="13" y="40" width="294" height="260"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="343" id="B9J-Ll-ZpS"/>
-                                    <constraint firstAttribute="width" constant="315" id="qLI-i5-IJd"/>
+                                    <constraint firstAttribute="width" constant="294" id="JZm-OY-QlV"/>
+                                    <constraint firstAttribute="height" constant="260" id="r5s-a7-zcw"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="datasource" destination="vXZ-lx-hvc" id="ZG5-3i-K2B"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="wWC-uX-1u0"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AA-ol-gpI">
+                                <rect key="frame" x="57" y="387" width="206" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Begining of a week is Monday">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setBeginingOfAWeekMonday:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mDZ-Zf-K83"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVu-LY-Ifk">
+                                <rect key="frame" x="59" y="437" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Begining of a week is Sunday">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setBeginingOfAWeekSunday:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eyu-v7-7xS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPy-KZ-H9l">
+                                <rect key="frame" x="140" y="487" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Today">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="today:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KA2-RL-eS2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="AZj-re-fK6" secondAttribute="centerX" id="Qor-Fe-2YB"/>
-                            <constraint firstAttribute="centerY" secondItem="AZj-re-fK6" secondAttribute="centerY" id="yso-Qd-3ff"/>
+                            <constraint firstAttribute="centerX" secondItem="AZj-re-fK6" secondAttribute="centerX" id="KML-2u-5za"/>
+                            <constraint firstAttribute="centerX" secondItem="1AA-ol-gpI" secondAttribute="centerX" id="QQ9-lH-xma"/>
+                            <constraint firstAttribute="centerX" secondItem="gPy-KZ-H9l" secondAttribute="centerX" id="Urz-zR-I42"/>
+                            <constraint firstItem="1AA-ol-gpI" firstAttribute="top" secondItem="AZj-re-fK6" secondAttribute="bottom" constant="87" id="Xxr-fK-ava"/>
+                            <constraint firstItem="gPy-KZ-H9l" firstAttribute="top" secondItem="hVu-LY-Ifk" secondAttribute="bottom" constant="20" id="Xz9-Ji-2r0"/>
+                            <constraint firstItem="hVu-LY-Ifk" firstAttribute="top" secondItem="1AA-ol-gpI" secondAttribute="bottom" constant="20" id="eN8-Fg-bjo"/>
+                            <constraint firstItem="AZj-re-fK6" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="40" id="g0g-rN-sF7"/>
+                            <constraint firstAttribute="centerX" secondItem="hVu-LY-Ifk" secondAttribute="centerX" id="vj9-Ek-CdT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarPickerView" destination="AZj-re-fK6" id="ExU-ya-v8f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

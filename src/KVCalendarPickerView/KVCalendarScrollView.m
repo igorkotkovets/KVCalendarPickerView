@@ -60,11 +60,11 @@
     self.loadedViews = [[NSMutableArray alloc] init];
     
     [super setDelegate:self];
-    [self setDecelerationRate:UIScrollViewDecelerationRateNormal];
-    [self setPagingEnabled:NO];
-    [self setAlwaysBounceHorizontal:NO];
-    [self setAlwaysBounceVertical:YES];
-    [self setShowsVerticalScrollIndicator:NO];
+    self.decelerationRate = UIScrollViewDecelerationRateNormal;
+    self.pagingEnabled = NO;
+    self.alwaysBounceHorizontal = NO;
+    self.alwaysBounceVertical = NO;
+    self.showsVerticalScrollIndicator = NO;
 }
 
 - (void)setupContent
@@ -73,7 +73,7 @@
                      monthScrollViewGetFixedTileSize:self];
     
     CGSize sz = [self frame].size;
-    [self setContentSize:CGSizeMake(sz.width, 7.f*sz.height)];
+    [self setContentSize:CGSizeMake(sz.width, 9.f*sz.height)];
     [self setContentOffset:CGPointZero];
 }
 
@@ -102,16 +102,15 @@
     currentOffset.y = MAX(0, currentOffset.y);
     currentOffset.y = MIN(currentOffset.y, contentHeight-[self bounds].size.height);
     CGFloat centerOffsetY = (contentHeight - [self bounds].size.height) / 2.0;
-    CGFloat distanceFromCenter = currentOffset.y - centerOffsetY;
-    CGFloat absDistanceFromCenter = fabs(distanceFromCenter);
+    CGFloat distanceFromCenter = (centerOffsetY - currentOffset.y);
     
-    if (absDistanceFromCenter>=contentHeight/4.f)
+    if (fabs(distanceFromCenter)>=contentHeight/4.f)
     {
         self.contentOffset = CGPointMake(currentOffset.x, centerOffsetY);
         for (UIView *view in self.loadedViews)
         {
             CGPoint center = view.center;
-            center.y += (centerOffsetY - currentOffset.y);
+            center.y += distanceFromCenter;
             view.center = center;
         }
     }
@@ -155,9 +154,11 @@
                             column:0];
     }
     
-    [self addTilesToTopLeftPoint:tl fromRightX:br.x];
-    [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
-    [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
+    @synchronized(self) {
+        [self addTilesToTopLeftPoint:tl fromRightX:br.x];
+        [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
+        [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
+    }
 }
 
 - (void)addTilesToBottomRightPoint:(CGPoint)br fromLeftX:(CGFloat)x
@@ -224,22 +225,20 @@
 
 -(void)removeTilesOutOfTopLeftPoint:(CGPoint)tl toBottomRightPoint:(CGPoint)br
 {
-    KVCalendarTile *lastView = [self.loadedViews lastObject];
-    //    while ([lastView frame].origin.y >= br.y+_tileSize.height)
-    while ([lastView frame].origin.y >= br.y+([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
-    {
-        [lastView removeFromSuperview];
-        [self.loadedViews removeLastObject];
-        lastView = [self.loadedViews lastObject];
-    }
-    
     KVCalendarTile *firstView = [self.loadedViews firstObject];
-    //    while (firstView && CGRectGetMaxY([firstView frame]) <= tl.y-_tileSize.height)
-    while (firstView && CGRectGetMaxY([firstView frame]) <= tl.y-([self isDecelerating]||[self isDragging]?_tileSize.height:0.f))
+    while (firstView && CGRectGetMaxY(firstView.frame)<tl.y)
     {
         [firstView removeFromSuperview];
         [self.loadedViews removeObject:firstView];
         firstView = [self.loadedViews firstObject];
+    }
+    
+    KVCalendarTile *lastView = [self.loadedViews lastObject];
+    while (lastView && CGRectGetMinY([lastView frame])>br.y)
+    {
+        [lastView removeFromSuperview];
+        [self.loadedViews removeObject:lastView];
+        lastView = [self.loadedViews lastObject];
     }
 }
 
@@ -254,8 +253,6 @@
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    self.userInteractionEnabled = YES;
-    
     [self performSelector:@selector(notifyDelegateScrollViewDidFinishScrollAnimating) withObject:nil afterDelay:0];
 }
 
@@ -285,6 +282,17 @@
     [self setupContent];
     
     [self setNeedsLayout];
+}
+
+- (void)stopScrolling
+{
+    CGPoint offset = self.contentOffset;
+    offset.x -= 1.0;
+    offset.y -= 1.0;
+    [self setContentOffset:offset animated:NO];
+    offset.x += 1.0;
+    offset.y += 1.0;
+    [self setContentOffset:offset animated:NO];
 }
 
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromTop

@@ -62,6 +62,7 @@
       dateProvider:(KVCalendarDateController *)provider;
 
 - (void)reloadData;
+- (void)stopScrolling;
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromTop;
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromBottom;
 
