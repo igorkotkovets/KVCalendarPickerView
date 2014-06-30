@@ -136,9 +136,13 @@
      */
     NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
     /* Substract [gregorian firstWeekday] to handle first day of the week being something else than Sunday */
-    //    [componentsToSubtract setDay: - ([weekdayComponents weekday] - [calendar firstWeekday])];
-    [componentsToSubtract setDay: - ([weekdayComponents weekday] - _firstWeekDay)];
-//    [componentsToSubtract setDay: - ([weekdayComponents weekday])];
+    if ([weekdayComponents weekday] != 1) {
+        [componentsToSubtract setDay: - ([weekdayComponents weekday] - [calendar firstWeekday])];
+    }
+    else {
+        [componentsToSubtract setDay: - ([weekdayComponents weekday] - [calendar firstWeekday]) - 7];
+    }
+//    [componentsToSubtract setDay: - ([weekdayComponents weekday] - _firstWeekDay)];
     NSDate *beginningOfWeek = [calendar dateByAddingComponents:componentsToSubtract
                                                         toDate:date options:0];
     

@@ -163,7 +163,7 @@
 - (void)addTilesToBottomRightPoint:(CGPoint)br fromLeftX:(CGFloat)x
 {
     KVCalendarTile *lastView = [self.loadedViews lastObject];
-    NSInteger column = lastView.column;
+    NSInteger column = lastView.column+1;
     CGPoint rightEdgePoint = CGPointMake(CGRectGetMaxX(lastView.frame),
                                          CGRectGetMinY(lastView.frame));
     
@@ -190,7 +190,7 @@
 - (void)addTilesToTopLeftPoint:(CGPoint)tl fromRightX:(CGFloat)x
 {
     KVCalendarTile *firstView = [self.loadedViews firstObject];
-    NSInteger column = firstView.column;
+    NSInteger column = firstView.column-1;
     CGPoint leftTopEdgePoint = CGPointMake(CGRectGetMinX(firstView.frame),
                                            CGRectGetMinY(firstView.frame));
     
