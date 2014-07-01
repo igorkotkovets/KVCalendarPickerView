@@ -8,7 +8,6 @@
 
 #import "KVCalendarDateTile.h"
 
-#import "KVCalendarTile+Protected.h"
 #import "KVDateTileProvider.h"
 #import "KVEmptyTileProvider.h"
 #import "KVCalendarDateController.h"

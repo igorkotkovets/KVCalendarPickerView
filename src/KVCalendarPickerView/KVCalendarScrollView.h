@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Kotkovets. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-#import "KVCalendarTile.h"
 
+@class KVCalendarTile;
 @class KVCalendarDateController;
 @class KVCalendarScrollView;
 @class KVCalendarDateTile;
@@ -63,6 +63,7 @@
 
 - (void)reloadData;
 - (void)stopScrolling;
+
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromTop;
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromBottom;
 
