@@ -154,11 +154,9 @@
                             column:0];
     }
     
-    @synchronized(self) {
-        [self addTilesToTopLeftPoint:tl fromRightX:br.x];
-        [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
-        [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
-    }
+    [self addTilesToTopLeftPoint:tl fromRightX:br.x];
+    [self addTilesToBottomRightPoint:br fromLeftX:tl.x];
+    [self removeTilesOutOfTopLeftPoint:tl toBottomRightPoint:br];
 }
 
 - (void)addTilesToBottomRightPoint:(CGPoint)br fromLeftX:(CGFloat)x

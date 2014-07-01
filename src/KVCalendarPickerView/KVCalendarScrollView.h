@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kotkovets. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "KVCalendarTile.h"
 

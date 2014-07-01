@@ -16,6 +16,8 @@
 #import "KVCalendarEmptyTile.h"
 #import "KVCalendarConstants.h"
 
+#define KVDAYS_TEXT_COLOR [UIColor colorWithRed:64/255.f green:64/255.f blue:64/255.f alpha:1.f]
+
 @interface KVCalendarPickerView ()
 <KVCalendarScrollViewDatasource, KVCalendarScrollViewDelegate,
 KVCalendarMonthTileDelegate, KVCalendarDateTileDelegate>
@@ -67,8 +69,7 @@ static const float DayLabelsHeight = 30.f;
     self.monthScrollView.clipsToBounds = YES;
     [self addSubview:self.monthScrollView];
     
-    self.monthScrollView.layer.borderColor =
-    [UIColor colorWithRed:211/255.f green:207/255.f blue:207/255.f alpha:1.f].CGColor;
+    self.monthScrollView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.monthScrollView.layer.borderWidth = 0.5f;
     
     
@@ -91,7 +92,7 @@ static const float DayLabelsHeight = 30.f;
         UILabel * dayLabel = [[UILabel alloc] initWithFrame:rc];
         dayLabel.backgroundColor = [UIColor clearColor];
         dayLabel.textAlignment = NSTextAlignmentCenter;
-        dayLabel.textColor = [UIColor colorWithRed:64/255.f green:64/255.f blue:64/255.f alpha:1.f];
+        dayLabel.textColor = KVDAYS_TEXT_COLOR;
         
         [self addSubview:dayLabel];
         [dayLabels addObject:dayLabel];

@@ -11,15 +11,11 @@
 @implementation KVCalendarScrollView (Protected)
 - (void)setLoadedViews:(NSMutableArray *)array
 {
-    @synchronized(self) {
-        _loadedViews = array;
-    }
+    _loadedViews = array;
 }
 
 - (NSMutableArray *)loadedViews
 {
-    @synchronized(self) {
-        return _loadedViews;
-    }
+    return _loadedViews;
 }
 @end
