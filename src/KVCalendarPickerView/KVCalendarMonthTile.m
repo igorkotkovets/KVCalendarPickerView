@@ -36,16 +36,6 @@
     [self setupKVCalendarMonthTile];
 }
 
--(void)setDelegate:(id<KVCalendarMonthTileDelegate>)delegate
-{
-    _delegate = delegate;
-}
-
--(id<KVCalendarMonthTileDelegate>)delegate
-{
-    return _delegate;
-}
-
 #pragma mark -
 #pragma mark - Private
 

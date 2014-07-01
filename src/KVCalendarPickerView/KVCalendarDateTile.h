@@ -15,12 +15,15 @@
 
 @interface KVCalendarDateTile : KVCalendarTile
 {
-    id<KVCalendarDateTileDelegate> _delegate;
     UIButton *_dateButton;
 }
 
--(void)setDelegate:(id<KVCalendarDateTileDelegate>)delegate;
--(id<KVCalendarDateTileDelegate>)delegate;
+@property (nonatomic, weak) id<KVCalendarDateTileDelegate> delegate;
 
 -(void)setDateString:(NSString *)string;
+
+- (Class)getNextTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        nextDate:(NSDate **)date;
+- (Class)getPreviousTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        previousDate:(NSDate **)date;
 @end

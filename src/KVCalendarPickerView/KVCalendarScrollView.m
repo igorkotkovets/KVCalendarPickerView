@@ -258,13 +258,16 @@ static CGFloat const kScrollHeightScaleValue = 9.f;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self performSelector:@selector(notifyDelegateScrollViewDidFinishScrollAnimating) withObject:nil afterDelay:0];;
+    [self performSelector:@selector(notifyDelegateScrollViewDidFinishScrollAnimating)
+               withObject:nil afterDelay:0];;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (!decelerate)
-        [self performSelector:@selector(notifyDelegateScrollViewDidFinishScrollAnimating) withObject:nil afterDelay:0];
+    if (!decelerate) {
+        [self performSelector:@selector(notifyDelegateScrollViewDidFinishScrollAnimating)
+                   withObject:nil afterDelay:0];
+    }
 }
 
 - (void)notifyDelegateScrollViewDidFinishScrollAnimating

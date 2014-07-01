@@ -19,7 +19,7 @@
 @property(nonatomic, strong) UIButton *dateButton;
 
 - (void)setupKVCalendarDateTile;
-- (void)monthButtonDidTouchUpInside:(id)sender;
+- (void)dateButtonDidTouchUpInside:(id)sender;
 @end
 
 @implementation KVCalendarDateTile
@@ -37,16 +37,6 @@
 - (void)awakeFromNib
 {
     [self setupKVCalendarDateTile];
-}
-
-- (void)setDelegate:(id<KVCalendarDateTileDelegate>)delegate
-{
-    _delegate = delegate;
-}
-
-- (id<KVCalendarDateTileDelegate>)delegate
-{
-    return _delegate;
 }
 
 - (void)setDateString:(NSString *)string
@@ -69,14 +59,13 @@
     self.dateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.dateButton.frame = self.bounds;
     [self.dateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.dateButton.enabled = NO;
     [self.dateButton addTarget:self
-                        action:@selector(monthButtonDidTouchUpInside:)
+                        action:@selector(dateButtonDidTouchUpInside:)
               forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.dateButton];
 }
 
-- (void)monthButtonDidTouchUpInside:(id)sender
+- (void)dateButtonDidTouchUpInside:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(didSelectCalendarDateTile:withDate:)])
     {

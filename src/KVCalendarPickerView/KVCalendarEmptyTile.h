@@ -9,4 +9,8 @@
 #import "KVCalendarTile.h"
 
 @interface KVCalendarEmptyTile : KVCalendarTile
+- (Class)getNextTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        nextDate:(NSDate **)date;
+- (Class)getPreviousTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        previousDate:(NSDate **)date;
 @end

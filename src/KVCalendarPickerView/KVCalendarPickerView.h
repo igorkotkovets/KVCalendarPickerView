@@ -9,15 +9,14 @@
 @import UIKit;
 
 #import "KVCalendarConstants.h"
+#import "KVCalendarDateTile.h"
 
-@class KVCalendarTile;
 @class KVCalendarPickerView;
-
-
 @protocol KVCalendarPickerViewDelegate <NSObject>
-- (void)monthCalendarPicker:(KVCalendarPickerView *)picker willDisplayTile:(KVCalendarTile *)tile;
-- (void)monthCalendarPicker:(KVCalendarPickerView *)picker didChangeSelectedMonth:(NSDate *)date;
--(void)monthCalendarPicker:(KVCalendarPickerView *)picker didSelectDate:(NSDate *)date;
+- (void)calendarPickerView:(KVCalendarPickerView *)picker
+           didShowTile:(KVCalendarDateTile *)tile;
+- (void)calendarPickerView:(KVCalendarPickerView *)picker
+              didSelectDate:(NSDate *)date;
 @end
 
 @interface KVCalendarPickerView : UIView

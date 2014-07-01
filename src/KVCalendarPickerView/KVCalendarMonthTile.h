@@ -15,13 +15,16 @@
 
 @interface KVCalendarMonthTile : KVCalendarTile
 {
-    id<KVCalendarMonthTileDelegate> _delegate;
     UIButton *_monthButton;
 }
 
+@property (nonatomic, weak) id<KVCalendarMonthTileDelegate> delegate;
+
 -(void)setMonthString:(NSString *)string;
 
--(void)setDelegate:(id<KVCalendarMonthTileDelegate>)delegate;
--(id<KVCalendarMonthTileDelegate>)delegate;
+- (Class)getNextTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        nextDate:(NSDate **)date;
+- (Class)getPreviousTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        previousDate:(NSDate **)date;
 
 @end

@@ -14,6 +14,8 @@
 #import "KVCalendarMonthTile.h"
 #import "KVCalendarEmptyTile.h"
 #import "KVCalendarConstants.h"
+#import "KVCalendarScrollView+Protected.h"
+
 
 #define KVDAYS_TEXT_COLOR [UIColor colorWithRed:64/255.f green:64/255.f blue:64/255.f alpha:1.f]
 
@@ -147,6 +149,10 @@ static const float DayLabelsHeight = 30.f;
     [self.monthScrollView stopScrolling];
     [self.dateProvider setFirstWeekDay:firstWeekday];
     [self.monthScrollView reloadData];
+    
+    [self performSelector:@selector(calendarScrollViewDidFinishScrollAnimating:)
+               withObject:self.monthScrollView
+               afterDelay:0];
 }
 
 - (MonthCalendarWeekBeginsFromDay)firstWeekday
@@ -159,10 +165,10 @@ static const float DayLabelsHeight = 30.f;
     [self.monthScrollView stopScrolling];
     [self.dateProvider setBaseDate:date];
     [self.monthScrollView reloadData];
-}
-
-- (void)presentDatesBeginsFromDate:(NSDate *)aDate
-{
+    
+    [self performSelector:@selector(calendarScrollViewDidFinishScrollAnimating:)
+               withObject:self.monthScrollView
+               afterDelay:0];
 }
 
 #pragma mark -
@@ -248,15 +254,28 @@ static const CGFloat tileHeight = 46;
 
 - (void)calendarScrollViewDidFinishScrollAnimating:(KVCalendarScrollView *)view
 {
-    NSLog(@"calendarScrollViewDidFinishScrollAnimating");
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"class == %@", [KVCalendarDateTile class]];
+    NSArray *dateTiles = [view.loadedViews filteredArrayUsingPredicate:predicate];
+    
+    for (KVCalendarDateTile *dateTile in dateTiles) {
+        [self.delegate calendarPickerView:self didShowTile:dateTile];
+    }
 }
 
 #pragma mark -
-#pragma mark - <KVCalendarTileDelegate>
+#pragma mark - <KVCalendarDateTileDelegate>
 
--(void)didSelectCalendarTile:(KVCalendarTile *)view withDate:(NSDate *)date
+-(void)didSelectCalendarDateTile:(KVCalendarTile *)view withDate:(NSDate *)date
 {
-    [self.delegate monthCalendarPicker:self didSelectDate:date];
+    [self.delegate calendarPickerView:self didSelectDate:date];
+}
+
+#pragma mark -
+#pragma mark - <KVCalendarMonthTileDelegate>
+
+- (void)didSelectCalendarMonthTile:(KVCalendarMonthTile *)view withDate:(NSDate *)date
+{
+    // do nothing
 }
 
 @end

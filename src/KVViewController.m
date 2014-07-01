@@ -29,12 +29,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)monthCalendarPicker:(KVCalendarPickerView *)picker willDisplayTile:(KVCalendarTile *)tile
+- (void)calendarPickerView:(KVCalendarPickerView *)picker didShowTile:(KVCalendarDateTile *)tile
 {
-    
 }
 
--(void)monthCalendarPicker:(KVCalendarPickerView *)picker didSelectDate:(NSDate *)date
+-(void)calendarPickerView:(KVCalendarPickerView *)picker didSelectDate:(NSDate *)date
 {
     
 }
