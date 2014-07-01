@@ -9,7 +9,6 @@
 #import "KVCalendarPickerView.h"
 
 #import "KVCalendarDateController.h"
-#import "KVCalendarTile+Protected.h"
 #import "KVCalendarScrollView.h"
 #import "KVCalendarDateTile.h"
 #import "KVCalendarMonthTile.h"

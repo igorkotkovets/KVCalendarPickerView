@@ -8,8 +8,8 @@
 
 @import UIKit;
 
-#import "KVCalendarTile.h"
 
+@class KVCalendarTile;
 @class KVCalendarDateController;
 @class KVCalendarScrollView;
 @class KVCalendarDateTile;
@@ -63,6 +63,7 @@
 
 - (void)reloadData;
 - (void)stopScrolling;
+
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromTop;
 - (KVCalendarDateTile *)dequeueReusableCalendarTileFromBottom;
 

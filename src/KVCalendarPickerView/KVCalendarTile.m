@@ -9,6 +9,7 @@
 #import "KVCalendarTile.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "KVCalendarDateController.h"
 
 @interface KVCalendarTile ()
 
@@ -31,6 +32,22 @@
 -(void)awakeFromNib
 {
     [self setupKVCalendarTile];
+}
+
+- (Class)getNextTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        nextDate:(NSDate **)date
+{
+    @throw [NSException exceptionWithName:@"Method not found"
+                                   reason:@"Method not implemented in base class"
+                                 userInfo:nil];
+}
+
+- (Class)getPreviousTileViewProviderWithDateProvider:(KVCalendarDateController *)controller
+                                        previousDate:(NSDate **)date
+{
+    @throw [NSException exceptionWithName:@"Method not found"
+                                   reason:@"Method not implemented in base class"
+                                 userInfo:nil];
 }
 
 #pragma mark - 

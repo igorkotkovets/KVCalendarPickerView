@@ -15,7 +15,7 @@
 #import "KVCalendarEmptyTile.h"
 #import "KVCalendarScrollView+Protected.h"
 #import "KVDateTileProvider.h"
-#import "KVCalendarTile+Protected.h"
+
 
 
 @interface KVCalendarScrollView ()
@@ -67,13 +67,15 @@
     self.showsVerticalScrollIndicator = NO;
 }
 
+static CGFloat const kScrollHeightScaleValue = 9.f;
+
 - (void)setupContent
 {
     self.tileSize = [self.calendarScrollDatasource
                      monthScrollViewGetFixedTileSize:self];
     
     CGSize sz = [self frame].size;
-    [self setContentSize:CGSizeMake(sz.width, 9.f*sz.height)];
+    [self setContentSize:CGSizeMake(sz.width, kScrollHeightScaleValue*sz.height)];
     [self setContentOffset:CGPointZero];
 }
 

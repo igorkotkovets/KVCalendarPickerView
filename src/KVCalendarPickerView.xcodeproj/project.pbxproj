@@ -26,7 +26,6 @@
 		D89011D3195F4C5D002BBE2B /* KVCalendarPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011B1195F4C5D002BBE2B /* KVCalendarPickerView.m */; };
 		D89011D4195F4C5D002BBE2B /* KVCalendarScrollView+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011B3195F4C5D002BBE2B /* KVCalendarScrollView+Protected.m */; };
 		D89011D5195F4C5D002BBE2B /* KVCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011B5195F4C5D002BBE2B /* KVCalendarScrollView.m */; };
-		D89011D6195F4C5D002BBE2B /* KVCalendarTile+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011B7195F4C5D002BBE2B /* KVCalendarTile+Protected.m */; };
 		D89011D7195F4C5D002BBE2B /* KVCalendarTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011B9195F4C5D002BBE2B /* KVCalendarTile.m */; };
 		D89011D8195F4C5D002BBE2B /* KVDateTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011BB195F4C5D002BBE2B /* KVDateTileProvider.m */; };
 		D89011D9195F4C5D002BBE2B /* KVEmptyTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D89011BD195F4C5D002BBE2B /* KVEmptyTileProvider.m */; };
@@ -79,8 +78,6 @@
 		D89011B3195F4C5D002BBE2B /* KVCalendarScrollView+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KVCalendarScrollView+Protected.m"; sourceTree = "<group>"; };
 		D89011B4195F4C5D002BBE2B /* KVCalendarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVCalendarScrollView.h; sourceTree = "<group>"; };
 		D89011B5195F4C5D002BBE2B /* KVCalendarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVCalendarScrollView.m; sourceTree = "<group>"; };
-		D89011B6195F4C5D002BBE2B /* KVCalendarTile+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KVCalendarTile+Protected.h"; sourceTree = "<group>"; };
-		D89011B7195F4C5D002BBE2B /* KVCalendarTile+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KVCalendarTile+Protected.m"; sourceTree = "<group>"; };
 		D89011B8195F4C5D002BBE2B /* KVCalendarTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVCalendarTile.h; sourceTree = "<group>"; };
 		D89011B9195F4C5D002BBE2B /* KVCalendarTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KVCalendarTile.m; sourceTree = "<group>"; };
 		D89011BA195F4C5D002BBE2B /* KVDateTileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KVDateTileProvider.h; sourceTree = "<group>"; };
@@ -220,8 +217,6 @@
 				D89011B3195F4C5D002BBE2B /* KVCalendarScrollView+Protected.m */,
 				D89011B4195F4C5D002BBE2B /* KVCalendarScrollView.h */,
 				D89011B5195F4C5D002BBE2B /* KVCalendarScrollView.m */,
-				D89011B6195F4C5D002BBE2B /* KVCalendarTile+Protected.h */,
-				D89011B7195F4C5D002BBE2B /* KVCalendarTile+Protected.m */,
 				D89011B8195F4C5D002BBE2B /* KVCalendarTile.h */,
 				D89011B9195F4C5D002BBE2B /* KVCalendarTile.m */,
 				D89011BA195F4C5D002BBE2B /* KVDateTileProvider.h */,
@@ -347,7 +342,6 @@
 				D89011CE195F4C5D002BBE2B /* KVCalendarConstants.m in Sources */,
 				D89011D0195F4C5D002BBE2B /* KVCalendarDateTile.m in Sources */,
 				D89011DC195F4C5D002BBE2B /* NSDate+KVCalendarUtils.m in Sources */,
-				D89011D6195F4C5D002BBE2B /* KVCalendarTile+Protected.m in Sources */,
 				D89011DE195F4C5D002BBE2B /* KVViewController.m in Sources */,
 				D89011D2195F4C5D002BBE2B /* KVCalendarMonthTile.m in Sources */,
 				D89011CD195F4C5D002BBE2B /* KVAppDelegate.m in Sources */,
